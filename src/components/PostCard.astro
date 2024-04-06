@@ -1,0 +1,28 @@
+astroCopy code
+---
+// src/components/PostCard.astro
+const { post } = Astro.props;
+---
+
+<div class="post-card">
+  <h2>{post.title}</h2>
+  <p>{post.body}</p>
+  <a href={`/posts/${post.id}`}>Ver detalles</a>
+</div>
+
+<style>
+    .post-card{
+        width: 100%;    
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 2px solid #ccc;
+        border-radius: 7px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+    .post-card a{
+        color: #0c1ddb;
+        text-decoration: none;
+    }
+</style>

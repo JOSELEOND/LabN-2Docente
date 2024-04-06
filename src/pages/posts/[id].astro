@@ -1,0 +1,116 @@
+astroCopy code
+---
+// src/pages/posts/[id].astro
+const { id } = Astro.params;
+const postRes = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+const post = await postRes.json();
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (let i = 1; i <= 100; i++) {
+    paths.push({ params: { id: `${i}` } });
+  }
+  return paths;
+}
+---
+
+<html>
+<head>
+  <title>{post.title}</title>
+</head>
+<header class="header">
+	<h1>Bienvenido a mi Blog</h1>
+	<nav>
+	  <ul>
+		<li><a href="#">Inicio</a></li>
+		<li><a href="#">Acerca</a></li>
+		<li><a href="#">Contacto</a></li>
+	  </ul>
+	</nav>
+</header>
+<style>
+	.header {
+	  background-color: #333;
+	  padding: 0px;
+	  text-align: center;
+	  position: fixed;
+	  top: 1px; 
+	  width: 98vw;
+	}
+  
+	.header h1 {
+		color:#f2f2f2;
+		font-size:30px;
+		line-height:30px;
+		float:left;
+	  
+	}
+  
+	.header nav ul {
+	  padding: 0px;
+	  text-align: end;
+		
+	}
+  
+	.header nav ul li {
+	  display: inline;
+	  margin-right: 10px;
+
+	}
+  
+	.header nav ul li a {
+		display:inline-block;
+		color:#fff;
+		text-decoration:none;
+		padding:10px 20px;
+		line-height:normal;
+		font-size:15px;
+		font-weight:bold;
+		
+		background:#d7924e;
+		border-radius:40px;	
+	}
+	
+</style>
+<body>
+  <div class="container">
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+      <a href="/">Volver al inicio</a>
+    </article>
+  </div>
+  <style>
+      .container{
+        width: 100%;    
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 70px;
+        background-color: #f9f9f9;
+        border: 2px solid #ccc;
+        border-radius: 7px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        text-align: center;   
+    }   
+    .container a{
+      color: #0c1ddb;
+      text-decoration: none;
+    }
+  </style>
+  <footer>
+    <p>&copy; 2024 Mi Sitio Web. Todos los derechos reservados.</p>
+</footer>
+<style>
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 60px;
+      text-align: center;
+      bottom: 0;
+      width: 92%;
+      margin-top:310px;
+    }
+</style>
+</body>
+</html>
+
